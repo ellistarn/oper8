@@ -15,6 +15,7 @@ func (c *Conditions) Set(conditionType string, conditionStatus v1.ConditionStatu
 				condition.ObservedGeneration = condition.ObservedGeneration + 1
 			}
 			condition.Message = conditionMessage
+			condition.Reason = conditionType
 			condition.Status = conditionStatus
 			return
 		}
@@ -23,6 +24,7 @@ func (c *Conditions) Set(conditionType string, conditionStatus v1.ConditionStatu
 		Type:               conditionType,
 		Status:             conditionStatus,
 		Message:            conditionMessage,
+		Reason:             conditionType,
 		LastTransitionTime: v1.Now(),
 	})
 }
